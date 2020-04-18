@@ -1,8 +1,7 @@
 <aside class="sidebar">
         <div class="panel menu-list">
-            <div class="home">
-                <a href="index.php">Classroom</a>
-            </div>
+            <h2>Classroom</h2>    
+        
             <div class="add-class">
                 <a href="#" class="btn btn-add">
                     <i class="fas fa-plus"></i>

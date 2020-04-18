@@ -1,0 +1,1 @@
+document.querySelectorAll('.index-body .sidebar a')[1].classList.add('selected');

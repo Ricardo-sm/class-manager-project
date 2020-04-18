@@ -2,7 +2,7 @@
     --primaryFont: 'Ubuntu', sans-serif;
     --secondaryFont: 'Arial', sans-serif;
     --background: #0c1015;
-    --bgForm: rgba(16, 21, 37, 0.7);
+    --bgForm: rgba(16, 18, 37, 0.9);
     --bgField: rgba(9, 12, 24, 0.6);
     --colorPrimary: #212E3E;
     --colorPrimaryDark: #17202B;
@@ -156,7 +156,7 @@ button:focus {
     background: linear-gradient(45deg, rgba(100,113,251,1) 21%, rgba(88,199,250,1) 78%, rgba(88,199,250,1) 100%);
 }
 .btn-send:hover {
-    background: rgba(104,115,238,1);
+    background: #5889fa;
 }
 
 .btn-transparent {
@@ -166,11 +166,11 @@ button:focus {
 
 .btn-add {
     font-size: 1.2rem;
-    background-color: rgb(100,113,251);
+    background-color: #5889fa;
 }
 .btn-add:hover {
     color: #d8d8d8;
-    background-color: rgb(84, 95, 212);
+    background-color: #476fcc;
 }
 .btn-add i {
     font-size: 1rem;
@@ -210,7 +210,7 @@ button:focus {
     min-height: 650px;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: var(--bgForm);
+    background-color: rgba(16, 21, 37, 0.7);
     border: 1px solid var(--colorPrimaryDark);
     border-radius: 7px;
     -webkit-box-shadow: 0px 6px 8px 0px rgba(12, 15, 19, 0.5);
@@ -424,19 +424,8 @@ button:focus {
 }
 
 /*** ----------------------------------------INDEX-------------------------------------***/
-.index {
-    z-index: -1;
-    left: 0;
-    right: 0;
-    position: fixed;
-    background-image: linear-gradient(
-        rgba(19, 17, 32, 0.9),
-        rgba(19, 17, 32, 0.9)
-    ), url('../img/background.jpg');
-    height: 100vh;
-    background-size: cover;
-    background-position: top center;
-    filter: saturate(.3);
+.index-body {
+    background-color: #3f4775;
 }
 
 /**Sidebar**/
@@ -461,7 +450,7 @@ button:focus {
     }
 }
 
-.home {
+.panel h2 {
     background: rgb(100,113,251);
     background: linear-gradient(45deg, rgba(100,113,251,1) 21%, rgba(88,199,250,1) 78%, rgba(123, 210, 250, 1) 100%);
     -webkit-background-clip: text;
@@ -470,6 +459,7 @@ button:focus {
     text-align: center;
     font-size: 2rem;
     padding: 1rem 2rem;
+    margin: 0;
     border-bottom: 1.5px solid rgb(43, 48, 87);
 }
 
@@ -494,10 +484,15 @@ button:focus {
     text-decoration: none;
     font-size: 1.2rem;
     padding: 1rem 2rem;
-    transition: all .5s ease;
+    transition: all .3s ease;
 }
 .menu a:hover {
     color: #ffffff;
+    background-color: rgb(36, 39, 68);
+}
+
+.selected {
+    color: #ffffff !important;
     background: rgb(100,113,251);
     background: linear-gradient(45deg, rgba(100,113,251,1) 21%, rgba(88,199,250,1) 78%, rgba(88,199,250,1) 100%);
 }
@@ -507,7 +502,8 @@ button:focus {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 92.5vh;
+
+    
 }
 .main-content h1 {
     color: #ffffff;
@@ -516,9 +512,32 @@ button:focus {
     font-size: 2.5rem;
 }
 
+.wave {
+    z-index: -2;
+    left: 16.9rem;
+    right: 0;
+    position: fixed;
+    background-image: url('../img/wave.svg');
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+.wave-2 {
+    z-index: -1;
+    left: 16.9rem;
+    right: 0;
+    position: fixed;
+    background-image: url('../img/wave-2.svg');
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+
 /*Add Class*/
 .class-box {
-    background-color: var(--colorPrimary);
+    background-color: var(--bgForm);
     border: 1px solid var(--colorPrimaryDark);
     max-width: 750px;
     width: 90%;
@@ -529,6 +548,11 @@ button:focus {
     padding: 3rem;
 }
 .class-box .send {
+    background: none;
     margin-top: 3rem;
     justify-content: center;
+}
+
+.new-class {
+    padding: 1rem;
 }
