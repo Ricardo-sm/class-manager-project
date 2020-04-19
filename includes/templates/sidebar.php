@@ -3,10 +3,10 @@
             <h2>Classroom</h2>    
         
             <div class="add-class">
-                <a href="#" class="btn btn-add">
+                <button  class="btn btn-add" id="btn-modal">
                     <i class="fas fa-plus"></i>
                     New Class
-                </a>
+                </button>
             </div>
             <ul id="menu" class="menu">
                 <li>

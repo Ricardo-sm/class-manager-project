@@ -14,6 +14,26 @@
         <div class="wave-2"></div>
 
         <main class="main-content">
+            <div class="classes">
+                <div class="class">
+                    <div class="name">
+                        <h5>Class Name</h5>
+                    </div>
+                    
+                    <p>
+                        Duis sapien enim, scelerisque vitae rhoncus eu, venenatis a nulla.
+                        Nunc convallis, quam eu tempor pulvinar, lacus arcu aliquam est, 
+                        non rhoncus nisi lacus sed mi. Donec malesuada, quam in mollis
+                        sodales, metus arcu sollicitudin nisi.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <div id="modal" class="modal">
+        <div>
             <h1>Add New Class</h1>
 
             <div class="class-box">
@@ -23,12 +43,12 @@
                         <input type="text" name="class-name" id="class-name" placeholder="Class Name">
                     </div>
                     <div class="field send">
+                        <input type="hidden" name="add-class" id="add-class" value="add-class">
                         <input type="submit" class="btn btn-send" value="Create">
                     </div>
                 </form>
             </div>
-        </main>
-
+        </div>
     </div>
 
 <?php include_once('includes/templates/footer.php'); ?>
