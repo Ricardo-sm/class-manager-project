@@ -26,5 +26,25 @@
 
             echo SQL::logIn($mail, $password);
         }
+        if ($_POST['action'] == 'add-class') {
+            session_start();
+            $idTeacher = $_SESSION['id'];
+            $className = $_POST['class-name'];
+
+            if (SQL::repeatedClassName($className)) {
+                echo SQL::addClass($className, $idTeacher);
+            } else {
+                $response = array('response' => 'repeated');
+                echo json_encode($response);
+            }
+        }
+    }
+
+    if ($_GET != []) {
+        if ($_GET['action'] == 'delete') {
+            $idClass = $_GET['id-class'];
+
+            echo SQL::deleteClass($idClass);
+        }
     }
 ?>

@@ -121,7 +121,7 @@ button:focus {
 }
 .error {
     background-color: rgb(238, 148, 166);
-    color: rgb(163, 0, 33);
+    color: #a30021;
     border: 2px solid rgb(163, 0, 33);
 }
 
@@ -426,6 +426,7 @@ button:focus {
 /*** ----------------------------------------INDEX-------------------------------------***/
 .index-body {
     background-color: #3f4775;
+    overflow: hidden;
 }
 
 /**Sidebar**/
@@ -448,6 +449,11 @@ button:focus {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
     }
+}
+
+.main-content {
+    max-height: 100vh;
+    overflow: auto;
 }
 
 .panel h2 {
@@ -525,16 +531,15 @@ button:focus {
 /**Classes**/
 .classes {
     padding: 2rem 3rem;
+    margin-left: 6rem;
     display: flex;
     flex-wrap: wrap;
 }
 .class {
     position: relative;
-    flex: 0 0 calc(50% - 2rem);
 
-    margin: 0;
-    border: 2px solid var(--colorPrimaryDark);
     background-color: var(--bgForm);
+    margin-right: 3rem;
     margin-bottom: 2rem;
     transition: all .3s ease;
     max-width: 300px;
@@ -545,22 +550,41 @@ button:focus {
     color: white;
     text-align: center;
 }
-.class p {
-    padding: 1.5rem;
+.icon-bar {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    height: 60px;
+    padding: 1rem;
+    border-top: 1.5px solid rgb(35, 39, 75);
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.icon {
+    padding: .7rem;
+    border-radius: 50%;
+    transition: all .3s ease-out;
+}
+.icon:hover {
+    background: rgb(44, 49, 80);
+}
+.icon i {
+    font-size: 1.5rem;
+    background: rgb(100,113,251);
+    background: linear-gradient(45deg, rgba(100,113,251,1) 21%, rgba(88,199,250,1) 78%, rgba(123, 210, 250, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.name {
+.class h5 {
     background-color: rgba(11, 13, 27, 0.9);
-}
-.name h5 {
     font-size: 1.5rem;
     margin: 0;
     padding: 1rem;
-}
-@media (min-width: 768px) {
-    .class {
-        flex: 33.33% - 3rem;
-    }
+    width: 100%;
 }
 .class:hover {
     cursor: pointer;

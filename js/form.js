@@ -17,7 +17,7 @@ function validateAccount(e) {
 
 	if (type === 'login') {
 		if (mail === '' || password === '') {
-			showNotification('Todos los campos son obligatorios', 'error');
+			showNotification('All fields are required', 'error');
 		} else {
 			//Data
 			var data = new FormData();
@@ -31,13 +31,12 @@ function validateAccount(e) {
 			xhr.onload = function () {
 				if (this.status === 200) {
 					var response = JSON.parse(xhr.responseText);
-					console.log(response);
 
 					if (response.response === 'success') {
 						document.querySelector('#form').reset();
 						Swal.fire({
-							title: 'Sesión Iniciada',
-							text: 'Presione "OK" para continuar',
+							title: 'Success LogIn',
+							text: 'Click "OK" to Continue',
 							icon: 'success',
 							background: '#0c1015'
 						}).then((result) => {
@@ -46,11 +45,11 @@ function validateAccount(e) {
 							}
 						});
 					} else if (response.response === 'incorrect data') {
-						showNotification('Correo o contraseña erroneos', 'error');
+						showNotification('E-Mail or Password Incorrect', 'error');
 					} else {
 						Swal.fire({
 							title: 'Error',
-							text: 'Hubo un error',
+							text: 'Something Went Wrong',
 							icon: 'error',
 							background: '#0c1015'
 						});
@@ -63,7 +62,7 @@ function validateAccount(e) {
 		var username = document.querySelector('#username').value;
 
 		if (mail === '' || password === '' || username === '') {
-			showNotification('Todos los campos son obligatorios', 'error');
+			showNotification('All fields are required', 'error');
 		} else {
 			//Data
 			var data = new FormData();
@@ -82,8 +81,8 @@ function validateAccount(e) {
 					if (response.response === 'success') {
 						document.querySelector('#form').reset();
 						Swal.fire({
-							title: 'Cuenta Creada',
-							text: 'La cuenta se creo correctamente',
+							title: 'SignIn Successfully',
+							text: 'Account Created Successfully',
 							icon: 'success',
 							background: '#0c1015'
 						}).then((result) => {
@@ -92,13 +91,13 @@ function validateAccount(e) {
 							}
 						});
 					} else if (response.response === 'repeated') {
-						showNotification('El correo ya esta en uso', 'error');
+						showNotification('E-Mail is Already Registered', 'error');
                     } else if (response.response === 'password') {
-                        showNotification('La contraseña debe tener más de 8 caracteres', 'error');
+                        showNotification('Password Should Contain at Least 8 Characters', 'error');
                     } else {
 						Swal.fire({
 							title: 'Error',
-							text: 'Hubo un error',
+							text: 'Something Went Wrong',
 							icon: 'error',
 							background: '#0c1015'
 						});
