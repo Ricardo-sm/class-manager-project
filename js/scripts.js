@@ -146,6 +146,9 @@ function deleteClass(e) {
 	}
 }
 
+/**Students Page Functions**/
+numberStudents();
+
 //Read Form
 if (document.querySelector('#new-student')) {
 	document.querySelector('#new-student').addEventListener('submit', readForm);
@@ -245,6 +248,9 @@ function addStudent(data) {
 				newStudent.appendChild(actionContainer);
 				document.querySelector('#student-list tbody').appendChild(newStudent);
 
+				//Update Number Students
+				numberStudents();
+
 				//Reset Form
 				modal.style.display = 'none';
 				document.querySelector('#new-student').reset();
@@ -308,6 +314,9 @@ function deleteStudent(e) {
 							);
 							e.target.parentElement.parentElement.parentElement.parentElement.remove();
 
+							//Update Number Students
+							numberStudents();
+
 							Swal.fire({
 								title: 'Student Deleted',
 								icon: 'success',
@@ -343,7 +352,7 @@ function editStudent(data) {
 
 			if (response.response === 'success') {
 				const editBtn = document.querySelectorAll('.edit');
-				editBtn.forEach(element => {
+				editBtn.forEach((element) => {
 					if (element.getAttribute('student-id') === data.get('student-id')) {
 						const row = element.parentElement.parentElement.parentElement;
 						row.childNodes[1].textContent = response.name;
@@ -360,6 +369,8 @@ function editStudent(data) {
 					showConfirmButton: false,
 					timer: 2000
 				});
+			} else if (response.response === 'repeated') {
+				showNotification('You Have a Student With Same Mail', 'error');
 			} else {
 				Swal.fire({
 					title: 'Something Went Wrong',
@@ -372,6 +383,45 @@ function editStudent(data) {
 		}
 	};
 	xhr.send(data);
+}
+
+//Search Functions
+if (document.querySelector('#search')) {
+	document.querySelector('#search').addEventListener('input', searchStudents);
+}
+
+function searchStudents(e) {
+	const expression = new RegExp(e.target.value, "i");
+	const students = document.querySelectorAll('tbody tr');
+
+	students.forEach(element => {
+		element.style.display = 'none';
+		const info = element.childNodes[1].textContent + ' ' + element.childNodes[3].textContent;
+
+		if (
+			element.childNodes[1].textContent.replace(/\s/g, ' ').search(expression) != -1 ||
+			element.childNodes[3].textContent.replace(/\s/g, ' ').search(expression) != -1 ||
+			info.replace(/\s/g, ' ').search(expression) != -1
+		) {
+			element.style.display = 'table-row';
+		}
+
+		numberStudents();
+	});
+}
+
+function numberStudents() {
+	const totalStudents = document.querySelectorAll('tbody tr');
+	const numberCont = document.querySelector('.total-students span');
+	let total = 0;
+
+	totalStudents.forEach((element) => {
+		if (element.style.display === '' || element.style.display === 'table-row') {
+			total++;
+		}
+	});
+
+	numberCont.textContent = total;
 }
 
 //Change Modal For Edit
@@ -390,7 +440,7 @@ function changeModal(id) {
 	//AJAX
 	const xhr = new XMLHttpRequest();
 	xhr.open('GET', `includes/models/model.php?student=${id}&action=read-form`, true);
-	xhr.onload = function() {
+	xhr.onload = function () {
 		if (this.status === 200) {
 			const response = JSON.parse(xhr.responseText);
 
@@ -410,7 +460,7 @@ function changeModal(id) {
 				modal.style.display = 'flex';
 			}
 		}
-	}
+	};
 	xhr.send();
 }
 

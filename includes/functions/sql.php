@@ -188,6 +188,24 @@
             }
         }
 
+        public static function verifyClass(&$id) {
+            try {
+                $connection = Connector::getConnection();
+                $stmt = $connection->prepare('SELECT count(id) FROM class WHERE id=?');
+                $stmt->execute(array($id));
+                $rs = $stmt->fetch();
+
+                if ($rs['count(id)'] != 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (\Throwable $th) {
+                echo 'Error: ' . $th->getMessage();
+                return false;
+            }
+        }
+
         //Students Queries
         public static function repeatedStudent(&$mail, &$id) {
             try {

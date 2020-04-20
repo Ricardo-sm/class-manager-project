@@ -58,7 +58,12 @@
             $idClass = $_POST['class-id'];
             $idStudent = $_POST['student-id'];
 
-            echo SQL::editStudent($name,$lastName,$mail,$idStudent,$idClass);
+            if (SQL::repeatedStudent($mail, $idClass)) {
+                echo SQL::editStudent($name,$lastName,$mail,$idStudent,$idClass);
+            } else {
+                $response = array('response' => 'repeated');
+                echo json_encode($response);
+            }
         }
     }
 

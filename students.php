@@ -5,8 +5,13 @@
         exit();
     }
 ?>
-
 <?php require_once('includes/functions/sql.php') ?>
+<?php 
+    if (!SQL::verifyClass($_GET['class'])) {
+        header('Location:index.php');
+        exit();
+    }
+?>
 
 <?php include_once('includes/templates/header.php'); ?>
 
@@ -24,7 +29,7 @@
                 </div>
 
                 <p class="total-students">
-                    <span>2</span> Students
+                    <span></span> Students
                 </p>
 
                 <div class="table-container">
