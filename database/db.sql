@@ -22,7 +22,6 @@ CREATE TABLE `students` (
   `name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `mail` varchar(100) NOT NULL,
-  `mark` tinyint(2) NOT NULL,
   `id_class` int(11) NOT NULL,
   CONSTRAINT `students_ifbk_1` FOREIGN KEY(`id_class`) REFERENCES class(id)
 );
