@@ -1,3 +1,5 @@
+<!--Author: Pavel Ricardo Hernández López-->
+
 <?php 
     session_start();
     if (!isset($_SESSION['logged'])) {
