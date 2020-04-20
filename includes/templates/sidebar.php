@@ -1,3 +1,5 @@
+<?php require_once('includes/functions/utilities.php') ?>
+
 <aside class="sidebar">
         <div class="panel menu-list">
             <h2>Classroom</h2>    
@@ -5,12 +7,16 @@
             <div class="add-class">
                 <button  class="btn btn-add" id="btn-modal">
                     <i class="fas fa-plus"></i>
-                    New Class
+                    <?php if (Utilities::getPage() == 'index') { ?>
+                        New Class
+                    <?php } else { ?>
+                        Add Student
+                    <?php } ?>
                 </button>
             </div>
             <ul id="menu" class="menu">
                 <li>
-                    <a href="#">
+                    <a href="index.php">
                         <i class="fas fa-graduation-cap"></i>    
                         My Classes
                     </a>

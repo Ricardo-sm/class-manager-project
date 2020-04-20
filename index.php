@@ -43,7 +43,7 @@
             <h1>Add New Class</h1>
 
             <div class="class-box">
-                <form class="new-class" id="new-class">
+                <form class="new-class" id="new-class" autocomplete="off">
                     <div class="field">
                         <i class="fas fa-school"></i>
                         <input type="text" name="class-name" id="class-name" placeholder="Class Name">

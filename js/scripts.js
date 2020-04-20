@@ -1,5 +1,7 @@
 /**Selected Page**/
-document.querySelectorAll('.index-body .sidebar a')[0].classList.add('selected');
+if (document.querySelector('.index-body')) {
+	document.querySelectorAll('.index-body .sidebar a')[0].classList.add('selected');
+}
 
 /**Modal Function**/
 var modal = document.querySelector('#modal');
@@ -42,24 +44,34 @@ function addClass(e) {
 
 				if (response.response === 'success') {
 					//Add Class Div
-					const classes = document.querySelector('.classes');
-					const newClass = document.createElement('div');
-					newClass.classList.add('class');
-					newClass.innerHTML = `<h5>${response.class_name}</h5>`;
-					newClass.setAttribute('class-id', response.id_inserted);
-					
-					const iconBar = document.createElement('div');
-					iconBar.classList.add('icon-bar');
+					if (document.querySelector('.classes')) {
+						const classes = document.querySelector('.classes');
+						const newClass = document.createElement('div');
+						newClass.classList.add('class');
+						newClass.innerHTML = `<h5>${response.class_name}</h5>`;
+						newClass.setAttribute('class-id', response.id_inserted);
 
-					const icon = document.createElement('div');
-					icon.classList.add('icon');
-					const iconDelete = document.createElement('i');
-					iconDelete.classList.add('fas', 'fa-trash-alt');
+						const iconBar = document.createElement('div');
+						iconBar.classList.add('icon-bar');
 
-					icon.appendChild(iconDelete);
-					iconBar.appendChild(icon);
-					newClass.appendChild(iconBar);
-					classes.appendChild(newClass);
+						const icon = document.createElement('div');
+						icon.classList.add('icon');
+						const iconDelete = document.createElement('i');
+						iconDelete.classList.add('fas', 'fa-trash-alt');
+
+						icon.appendChild(iconDelete);
+						iconBar.appendChild(icon);
+						newClass.appendChild(iconBar);
+						classes.appendChild(newClass);
+					} else {
+						Swal.fire({
+							title: 'Class Created',
+							icon: 'success',
+							background: '#101225e6',
+							showConfirmButton: false,
+							timer: 2000
+						});
+					}
 
 					//Close & Reset Modal
 					document.querySelector('#new-class').reset();
@@ -71,7 +83,7 @@ function addClass(e) {
 						title: 'Error',
 						text: 'Something Went Wrong',
 						icon: 'error',
-						background: '#0c1015'
+						background: '#101225e6'
 					});
 				}
 			}
@@ -80,8 +92,10 @@ function addClass(e) {
 	}
 }
 
-//Delete Class
-document.querySelector('.classes').addEventListener('click', deleteClass);
+//Delete Class Or Open Class Page
+if (document.querySelector('.classes')) {
+	document.querySelector('.classes').addEventListener('click', deleteClass);
+}
 
 function deleteClass(e) {
 	if (e.target.parentElement.classList.contains('icon')) {
@@ -90,7 +104,7 @@ function deleteClass(e) {
 		Swal.fire({
 			title: 'Do You Want Delete This Class?',
 			icon: 'warning',
-			background: '#0c1015',
+			background: '#101225e6',
 			confirmButtonText: 'Yes',
 			showCancelButton: true,
 			confirmButtonColor: '#5889fa',
@@ -109,7 +123,7 @@ function deleteClass(e) {
 							Swal.fire({
 								title: 'Class Deleted',
 								icon: 'success',
-								background: '#0c1015',
+								background: '#101225e6',
 								showConfirmButton: false,
 								timer: 2000
 							});
@@ -121,7 +135,44 @@ function deleteClass(e) {
 				xhr.send();
 			}
 		});
+	} else if(e.target.classList.contains('class')) {
+		var idClass = e.target.getAttribute('class-id');
+		window.location.href = `students.php?class=${idClass}`;
 	}
+}
+
+//Add Student
+if (document.querySelector('#new-student')) {
+	document.querySelector('#new-student').addEventListener('submit', addStudent);
+}
+
+function addStudent(e) {
+	e.preventDefault();
+
+	//Reads Input Data
+	const name = document.querySelector('#name').value;
+	const lasName = document.querySelector('#last-name').value;
+	const mail = document.querySelector('#mail').value;
+	const type = document.querySelector('#add-class');
+
+	const data = new FormData();
+	data.append('name', name);
+	data.append('last-name', lasName);
+	data.append('mail', mail);
+	data.append('class-id', type.getAttribute('class-id'));
+	data.append('action', type.value);
+
+	//AJAX
+	const xhr = new XMLHttpRequest();
+	xhr.open('POST', 'includes/modals/modal.php', true);
+	xhr.onload = function() {
+		if (this.status === 200) {
+			const response = JSON.parse(xhr.responseText);
+
+			
+		}
+	}
+	xhr.send(data);
 }
 
 //Show Notification

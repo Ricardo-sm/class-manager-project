@@ -38,7 +38,7 @@ function validateAccount(e) {
 							title: 'Success LogIn',
 							text: 'Click "OK" to Continue',
 							icon: 'success',
-							background: '#0c1015'
+							background: '#101225e6'
 						}).then((result) => {
 							if (result.value) {
 								window.location.href = 'index.php';
@@ -51,7 +51,7 @@ function validateAccount(e) {
 							title: 'Error',
 							text: 'Something Went Wrong',
 							icon: 'error',
-							background: '#0c1015'
+							background: '#101225e6'
 						});
 					}
 				}
@@ -84,7 +84,7 @@ function validateAccount(e) {
 							title: 'SignIn Successfully',
 							text: 'Account Created Successfully',
 							icon: 'success',
-							background: '#0c1015'
+							background: '#101225e6'
 						}).then((result) => {
 							if (result.value) {
 								window.location.href = 'index.php';
@@ -99,7 +99,7 @@ function validateAccount(e) {
 							title: 'Error',
 							text: 'Something Went Wrong',
 							icon: 'error',
-							background: '#0c1015'
+							background: '#101225e6'
 						});
 					}
 				}
